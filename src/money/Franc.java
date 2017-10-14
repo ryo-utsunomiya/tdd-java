@@ -1,17 +1,11 @@
 package money;
 
-class Franc {
-    private int amount;
-
+class Franc extends Money {
     Franc(int amount) {
         this.amount = amount;
     }
 
     Franc times(int multiplier) {
         return new Franc(amount * multiplier);
-    }
-
-    public boolean equals(Object object) {
-        return object instanceof Franc && amount == ((Franc) object).amount;
     }
 }
