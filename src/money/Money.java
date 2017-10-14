@@ -1,10 +1,10 @@
 package money;
 
-class Money {
+class Money implements Expression {
     private int amount;
     private String currency;
 
-    Money(int amount, String currency) {
+    private Money(int amount, String currency) {
         this.amount = amount;
         this.currency = currency;
     }
@@ -21,15 +21,23 @@ class Money {
                 && currency().equals(money.currency());
     }
 
+    Money times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
+
+    Expression plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
+    }
+
+    public String toString() {
+        return amount + " " + currency;
+    }
+
     static Money dollar(int amount) {
         return new Money(amount, "USD");
     }
 
     static Money franc(int amount) {
         return new Money(amount, "CHF");
-    }
-
-    Money times(int multiplier) {
-        return new Money(amount * multiplier, currency);
     }
 }
